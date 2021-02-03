@@ -88,29 +88,30 @@ var markers = L.markerClusterGroup({disableClusteringAtZoom: 16});
     // For each row, columns `Latitude`, `Longitude`, and `Title` are required
     for (var i in data) {
       var row = data[i];
-  if( row.OPERATORE == "ILIAD") {
+	    var colore;
+  if( row.OPERATORE == "ILIAD") {  colorebande = "brown";
        iconemarker = L.icon({
     iconUrl: 'iliad.png',
    iconSize: [38, 38],iconAnchor:  [19, 38],popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
-}); } else if (row.OPERATORE == "TIM") {
+}); } else if (row.OPERATORE == "TIM") {  colorebande = "blue";
   iconemarker = L.icon({
     iconUrl: 'tim.png',
    iconSize: [38, 38],iconAnchor:  [19, 38],popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
 });
-} else if( row.OPERATOE == "VODAFONE")  {
+} else if( row.OPERATORE == "VODAFONE")  {  colorebande = "red";
        iconemarker = L.icon({
     iconUrl: 'vodafone.png',
    iconSize: [38, 38],iconAnchor:  [19, 38],popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
-}); } else if( row.OPERATORE == "WIND3") {
+}); } else if( row.OPERATORE == "WIND3") {  colorebande = "orange";
        iconemarker = L.icon({
     iconUrl: 'windtre.png',
    iconSize: [38, 38],iconAnchor:  [19, 38],popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
-}); } else {
-       iconemarker = L.icon({
+}); } else {  colorebande = "gray";
+       iconemarker = L.icon({ 
     iconUrl: 'default.png',
    iconSize: [38, 38],iconAnchor:  [19, 38],popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
 }); }
-      var marker = L.marker([row.LAT, row.LON], {icon: iconemarker}).bindPopup("<b>LAT,LON:</b> " + row.LAT + "," + row.LON + "<br /><b>LAT:</b> " + row.LAT + "<br /><b>LON:</b> " + row.LON + "<br /><b>CODICE:</b> " + row.CODICE + "<br /><b>NOME SITO:</b> " + row.DENOMINAZIONE + "<br /><b>QUOTA:</b> " + row.QUOTA + "<br /><b>INDIRIZZO:</b> " +row.INDIRIZZO + "," + row.COMUNE + "<br /><b>STATO DELL'IMPIANTO:</b> " +row.STATO_IMPIANTO+ "<br /><b>TIPO DI SITO:</b> " +row.TIPO_IMPIANTO+ "<br /><b>STATO DEI PERMESSI:</b> " +row.FASE_RICHIESTA + "<br /><b>TECNOLOGIE ATTIVE:</b> " +row.TECNOLOGIE_UTILIZZATE+ "<br /><b>GESTORE:</b> " +row.OPERATORE+ "<br /><b>SR_GEO:</b> " +row.SR_GEO+ "<br />").openPopup();
+      var marker = L.marker([row.LAT, row.LON], {icon: iconemarker}).bindPopup("<b>LAT,LON:</b> " + row.LAT + "," + row.LON + "<br /><b>LAT:</b> " + row.LAT + "<br /><b>LON:</b> " + row.LON + "<br /><b>CODICE:</b> " + row.CODICE + "<br /><b>NOME SITO:</b> " + row.DENOMINAZIONE + "<br /><b>QUOTA:</b> " + row.QUOTA + "<br /><b>INDIRIZZO:</b> " +row.INDIRIZZO + "," + row.COMUNE + "<br /><b>STATO DELL'IMPIANTO:</b> " +row.STATO_IMPIANTO+ "<br /><b>TIPO DI SITO:</b> " +row.TIPO_IMPIANTO+ "<br /><b>STATO DEI PERMESSI:</b> " +row.FASE_RICHIESTA + "<br /><b>TECNOLOGIE ATTIVE:</b> " +row.TECNOLOGIE_UTILIZZATE+ "<br /><b>GESTORE:</b> " +row.OPERATORE.fontcolor(colore)+ "<br /><b>SR_GEO:</b> " +row.SR_GEO+ "<br />").openPopup();
       marker.bindTooltip("<span>" + row.CODICE + " - " + row.DENOMINAZIONE + "</span>" , {permanent: true, direction: 'bottom'}).openTooltip();
 	    
    markers.addLayer(marker); //Aggiungo il layer della mappa a quello dei cluster
